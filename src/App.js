@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import './App.css';
+import { routes } from './routes';
+import { AdminPage } from './scenes/admin/admin';
+import { products } from './data/products';
+
+const getProducts = async () => products;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+    }
+  };
+
+  async componentDidMount() {
+    const prods = await getProducts(); 
+    this.setState({
+      products: prods,
+    })
+  };
+  render() {
+    return (
+      <div className="App">
+          <p>
+            <Link to={routes.admin}>Admin</Link>
+          </p>
+        <Route
+          exact
+          path={routes.admin}
+          render={
+            (renderProps) => (<AdminPage productList={this.state.products} {...renderProps} />)
+          }
+        />
+      </div>
+    );
+  }
+};
 
 export default App;
