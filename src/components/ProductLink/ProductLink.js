@@ -6,9 +6,9 @@ import { routes } from '../../routes';
 
 
 export const ProductLink = ({ id, title }) => (
-    <div>
+    <>
         <Link to={formatRoute(routes.adminProduct, { id })}>{title}</Link>
-    </div>
+    </>
 );
 
 ProductLink.propTypes = {

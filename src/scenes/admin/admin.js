@@ -1,27 +1,18 @@
 import React from 'react';
 import { arrayOf } from 'prop-types';
 import { Route } from 'react-router-dom';
-import styled from 'styled-components';
 import { productPropTypes } from '../../common/propTypes';
 import { ProductLink } from '../../components/ProductLink/ProductLink';
 import { routes } from '../../routes';
 import { ProductContainer } from '../../components/ProductContainer/ProductContainer';
+import s from './admin.module.css';
 
 export class AdminPage extends React.Component{
-    constructor(props) {
-        super(props);
-        this.onDeleted = this.onDeleted.bind(this);
-    }
-    
-    onDeleted(id) {
-        console.log(id);
-        
-    }
-
     render() {
-        const { productList, match, updateProduct } = this.props;
+        const { productList, match, updateProduct, onDeleted, onOpenModal } = this.props;
         return(
-            <div>
+            <>
+                <button onClick={onOpenModal}>Add</button>
                 <Route
                     path={match.path}
                     exact
@@ -34,17 +25,28 @@ export class AdminPage extends React.Component{
                                         id={id}
                                         title={title}
                                     />
+                                    <button className={s.btnClose} onClick={() => onDeleted(id)} ></button>
                                 </div>
-                            )
-                        }
-                        )
+                            );
+                        })
                     }
                 />
                 <Route
                     path={routes.adminProduct}
-                    render={(renderProps) => <ProductContainer productList={ productList } updateProduct={updateProduct} {...renderProps} />}
+                    exact
+                    render={(renderProps) => {
+                        return (
+                            <>
+                            <ProductContainer
+                                productList={ productList }
+                                updateProduct={updateProduct}
+                                {...renderProps}
+                            />
+                            </>
+                        )
+                    }}
                 />
-            </div>
+            </>
         )
     }
 }
