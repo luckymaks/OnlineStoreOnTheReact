@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+    height: auto;
+}
+
+label {
+    box-sizing: border-box;
+    width: 90%;
+}
+
+.title, .description, .price, .image {
+    box-sizing: border-box;
+    width: 90%;
+    border: 1px solid #5ba884;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input {
+    margin: 10px;
+}
+
+.description {
+    height: 100px;
+}
+
+.btn {
+    margin-left: 22px;
+}
+
+.btnContainer {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}

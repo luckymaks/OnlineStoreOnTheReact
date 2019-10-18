@@ -2,7 +2,7 @@ import React from 'react';
 import { arrayOf } from 'prop-types';
 import { Route } from 'react-router-dom';
 import { productPropTypes } from '../../common/propTypes';
-import { ProductLink } from '../../components/ProductLink/ProductLink';
+import { AdminProductLink } from '../../components/ProductLink/ProductLink';
 import { routes } from '../../routes';
 import { ProductContainer } from '../../components/ProductContainer/ProductContainer';
 import s from './admin.module.css';
@@ -20,7 +20,7 @@ export class AdminPage extends React.Component{
                         () => productList.map(({id, title}) => {
                             return (
                                 <div>
-                                    <ProductLink
+                                    <AdminProductLink
                                         key={id}
                                         id={id}
                                         title={title}

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Modal from 'react-modal';
 import s from './App.module.css';
 import { routes } from './routes';
 import { AdminPage } from './scenes/admin/admin';
 import { products } from './data/products';
+import { UserPage } from './scenes/user/user';
 
 const getProducts = async () => new Promise(
   (resolve) => {
@@ -116,19 +117,25 @@ class App extends React.Component {
     return (
       <>
         <div className={s.App}>
-            <p>
-              <Link to={routes.admin}>Admin</Link>
-            </p>
-          <Route
-            path={routes.admin}
-            render={(renderProps) => (<AdminPage
-              productList={this.state.products}
-              updateProduct={this.updateProduct}
-              onDeleted={this.onDeleted}
-              onOpenModal={this.openModal}
-              {...renderProps} />)
-            }
-          />
+          <div className={s.nav}>
+            <Link to={routes.home}>Home</Link>
+            <Link to={routes.admin}>Admin</Link>
+          </div>
+          <Switch>
+            <Route
+              path={routes.admin}
+              render={(renderProps) => (<AdminPage
+                productList={this.state.products}
+                updateProduct={this.updateProduct}
+                onDeleted={this.onDeleted}
+                onOpenModal={this.openModal}
+                {...renderProps} />)
+              }
+            />
+            <Route path={routes.home}>
+              <UserPage products={this.state.products} />
+            </Route>
+          </Switch>
           <Modal
             isOpen={this.state.modalIsOpen}
             onRequestClose={this.closeModal}

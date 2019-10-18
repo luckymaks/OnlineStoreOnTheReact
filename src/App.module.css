@@ -1,0 +1,76 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.nav {
+  display: flex;
+  margin: 15px;
+  width: 20%;
+  justify-content: space-around;
+}
+
+.form {
+  position: relative;
+  margin: 20px;
+}
+
+.form > label > input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #6bb6d4;
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  opacity: 0.3;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.btn:before, .btn:after {
+  position: absolute;
+  left: 10px;
+  content: ' ';
+  height: 16px;
+  width: 2px;
+  background-color: #333;
+}
+.btn:before {
+  transform: rotate(45deg);
+}
+
+.btn:after {
+  transform: rotate(-45deg);
+}
